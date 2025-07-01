@@ -1,65 +1,42 @@
+
 import streamlit as st
 from datetime import date
+from jafr_module import perform_jafr
+from simiyya_module import perform_simiyya
+from kimiya_module import perform_kimiya
+from limiyya_module import perform_limiyya
 
-# Set page config
 st.set_page_config(page_title="Abrahamic Reading", layout="centered")
+st.title("🔮 Abrahamic Reading Portal")
+st.markdown("Welcome to the Abrahamic Reading experience – based on sacred numerology, symbolic archetypes, spiritual chemistry, and esoteric astrology.")
 
-# Title and intro
-st.title("🕋 Abrahamic Reading Portal")
-st.markdown("""
-Welcome to the Abrahamic Reading experience — combining the mystical sciences of **Jafr** (Islamic numerology), **Simiyya** (symbolic vision), **Kimiya** (spiritual transformation), and **Limiyya** (elemental Qur'anic astrology).
-""")
-
-# User form input
 with st.form("user_form"):
-    st.header("🔮 Input Your Information")
-    name = st.text_input("🧵 Your Full Name")
-    mother_name = st.text_input("👩 Mother's Name")
-    birthdate = st.date_input("📅 Date of Birth", min_value=date(1900, 1, 1), max_value=date.today())
-    birthplace = st.text_input("📍 Place of Birth")
+    name = st.text_input("Your Full Name")
+    mother_name = st.text_input("Mother's Name")
+    birthdate = st.date_input("Date of Birth", min_value=date(1900, 1, 1), max_value=date.today())
+    birthplace = st.text_input("Place of Birth")
+    submitted = st.form_submit_button("🧿 Generate Reading")
 
-    st.header("🧬 Mystical Sciences to Include")
-    jafr = st.checkbox("🔢 Jafr (Islamic Numerology)", value=True)
-    simiyya = st.checkbox("🧿 Simiyya (Symbolic Reading)", value=True)
-    kimiya = st.checkbox("⚗️ Kimiya (Spiritual Chemistry)", value=True)
-    limiyya = st.checkbox("🌙 Limiyya (Quran & Elemental Astrology)", value=True)
-
-    submitted = st.form_submit_button("🔮 Generate Reading")
-
-# If form submitted
 if submitted:
-    st.success("✅ Reading generated below.")
-    st.subheader("📌 Summary of Input")
-    st.write(f"**Name:** {name}")
-    st.write(f"**Mother's Name:** {mother_name}")
-    st.write(f"**Birthdate:** {birthdate}")
-    st.write(f"**Birthplace:** {birthplace}")
+    st.success("🔓 Reading generated below.")
+    st.markdown("---")
 
-    # Display modules selected
-    st.subheader("📚 Modules Selected:")
-    st.markdown(f"- Jafr: **{jafr}**")
-    st.markdown(f"- Simiyya: **{simiyya}**")
-    st.markdown(f"- Kimiya: **{kimiya}**")
-    st.markdown(f"- Limiyya: **{limiyya}**")
+    jafr_result = perform_jafr(name, mother_name, birthdate)
+    simiyya_result = perform_simiyya(name)
+    kimiya_result = perform_kimiya(birthdate)
+    limiyya_result = perform_limiyya(birthdate, birthplace)
 
-    # 🔢 Simple numerology logic (Jafr style)
-    if jafr:
-        name_sum = sum(ord(c) for c in name if c.isalpha())
-        root_number = name_sum % 9 or 9
-        st.subheader("🔢 Jafr Numerology")
-        st.write(f"Your name value is **{name_sum}**, Root number is **{root_number}**")
+    st.markdown("### 🧮 Jafr (Islamic Numerology)")
+    st.write(jafr_result)
 
-    if simiyya:
-        st.subheader("🧿 Simiyya (Symbolism)")
-        st.write("You're under the archetype of a **Seeker of Hidden Truth** based on symbolic signature.")
+    st.markdown("### 🪞 Simiyya (Symbolic Reading)")
+    st.write(simiyya_result)
 
-    if kimiya:
-        st.subheader("⚗️ Kimiya (Spiritual Chemistry)")
-        st.write("Your spiritual element is **Water**, indicating deep intuition and emotional wisdom.")
+    st.markdown("### ⚗️ Kimiya (Spiritual Chemistry)")
+    st.write(kimiya_result)
 
-    if limiyya:
-        st.subheader("🌙 Limiyya (Qur'anic Elemental Reading)")
-        st.markdown("**Verse:** 'اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ' (An-Nur 24:35)")
+    st.markdown("### 🌒 Limiyya (Astrology + Quranic Wisdom)")
+    st.write(limiyya_result)
 
     st.markdown("---")
-    st.info("🧘 This tool is for educational and spiritual entertainment only.")
+    st.info("This tool is for educational and esoteric exploration purposes only.")
