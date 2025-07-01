@@ -1,2 +1,4 @@
 streamlit
-pandas
+hijri-converter
+pytz
+python-dateutil
