@@ -1,12 +1,7 @@
-
 from datetime import datetime
 import math
 
 def calculate_lunar_phase(birthdate: datetime) -> str:
-    """
-    Calculate the lunar phase for a given date.
-    Returns a string representing the moon phase.
-    """
     days_since_new = (birthdate - datetime(2001, 1, 1)).days % 29.53
     if days_since_new < 1.84566:
         return "New Moon"

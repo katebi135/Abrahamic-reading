@@ -1,11 +1,6 @@
-
-def perform_simiyya(name):
-    char_traits = {
-        "a": "Leader", "b": "Healer", "c": "Seeker", "d": "Builder", "e": "Artist",
-        "f": "Fighter", "g": "Mystic", "h": "Defender", "i": "Visionary"
-    }
-    meanings = [char_traits.get(c.lower(), "Wanderer") for c in name if c.isalpha()]
+def get_symbolic_reading(value: int) -> dict:
+    traits = ["Wanderer", "Seeker", "Guardian", "Healer", "Scribe", "Leader", "Mystic"]
     return {
-        "Symbolic Roles": meanings,
-        "Dominant Trait": max(set(meanings), key=meanings.count)
+        "Symbolic Role": traits[value % len(traits)],
+        "Trait Frequency": traits[:(value % len(traits)) + 1]
     }

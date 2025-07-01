@@ -1,8 +1,7 @@
-
-def perform_kimiya(birthdate):
-    elements = ["Air", "Fire", "Water", "Earth"]
-    index = (birthdate.day + birthdate.month) % 4
+def get_spiritual_elements(value: int) -> dict:
+    elements = ["Water", "Fire", "Air", "Earth"]
+    alchemy = ["Mercury", "Sulfur", "Salt", "Spirit"]
     return {
-        "Dominant Element": elements[index],
-        "Spiritual Alchemy": f"Your essence harmonizes with {elements[index]}, indicating inner {['clarity','passion','intuition','stability'][index]}."
+        "Dominant Element": elements[value % 4],
+        "Spiritual Alchemy": alchemy[value % 4]
     }

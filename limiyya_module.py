@@ -1,9 +1,7 @@
-
-def perform_limiyya(birthdate, birthplace):
-    verse = "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ - Surah An-Nur 24:35"
-    moon_phase = ["New Moon", "First Quarter", "Full Moon", "Last Quarter"][(birthdate.day % 4)]
+def get_astrological_profile(dob, place: str) -> dict:
+    zodiac = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+              "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
     return {
-        "Moon Phase at Birth": moon_phase,
-        "Qur’anic Verse Guidance": verse,
-        "Esoteric Note": f"Born under the {moon_phase}, you are spiritually drawn to deep transformation in {birthplace}."
+        "Zodiac Sign": zodiac[dob.month % 12],
+        "Place of Birth": place
     }
