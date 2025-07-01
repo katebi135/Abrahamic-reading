@@ -1,7 +1,7 @@
 
 import streamlit as st
 from datetime import date
-from moon_logic import calculate_lunar_phase
+import moon_logic
 from compatibility_module import symbolic_analysis, get_kimiyaa_insight, get_quranic_verse
 # You can add other imports like app.py functions if needed
 
