@@ -1,4 +1,3 @@
-
 import streamlit as st
 from datetime import date
 from jafr_module import perform_jafr
@@ -40,3 +39,4 @@ if submitted:
 
     st.markdown("---")
     st.info("This tool is for educational and esoteric exploration purposes only.")
+
