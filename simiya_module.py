@@ -1,4 +1,6 @@
-# Simiyā analysis logic
 
-def analyze_simiya(name):
-    return f'Simiyā magical structure decoded for {name}'
+def get_simiyya_reading(name):
+    return {
+        "Symbolic Roles": ["Wanderer", "Healer", "Sage"],
+        "Dominant Trait": "Wanderer"
+    }

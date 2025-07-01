@@ -1,5 +1,5 @@
+
 from datetime import datetime
-import math
 
 def calculate_lunar_phase(birthdate: datetime) -> str:
     days_since_new = (birthdate - datetime(2001, 1, 1)).days % 29.53
